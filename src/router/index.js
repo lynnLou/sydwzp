@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import maping from './meta.js'
 import frame from '.././components/mainBox'
 import allSite from '.././pages/all-site'
 import haerbin from '.././pages/haerbin'
@@ -19,82 +20,132 @@ import allSi from '.././pages/all-s'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'allSite',
-      component: allSite
-    },
-    {
-      path: '/all',
-      name: 'allSi',
-      component: allSi
+      name: '0',
+      component: allSite,
+      meta: maping.home,
+      index:0
     },
     {
       path: '/haerbin',
-      name: 'haerbin',
-      component: haerbin
+      name: '1',
+      component: haerbin,
+      meta: maping.haerbin,
+      index:1
     },
     {
       path: '/qqhe',
-      name: 'qqhe',
-      component: qqhe
+      name: '2',
+      component: qqhe,
+      meta: maping.qqhe,
+      index:2
     },
     {
       path: '/mdj',
-      name: 'mdj',
-      component: mdj
+      name: '3',
+      component: mdj,
+      meta: maping.mdj,
+      index:3
     },
     {
       path: '/jms',
-      name: 'jms',
-      component: jms
+      name: '4',
+      component: jms,
+      meta: maping.jms,
+      index:4
     },
     {
       path: '/dq',
-      name: 'dq',
-      component: dq
+      name: '5',
+      component: dq,
+      meta: maping.dq,
+      index:5
     },
     {
       path: '/jx',
-      name: 'jx',
-      component: jx
+      name: '6',
+      component: jx,
+      meta: maping.jx,
+      index:6
     },
     {
       path: '/sys',
-      name: 'sys',
-      component: sys
+      name: '7',
+      component: sys,
+      meta: maping.sys,
+      index:7
     },
     {
       path: '/yc',
-      name: 'yc',
-      component: yc
+      name: '8',
+      component: yc,
+      meta: maping.yc,
+      index:8
     },
     {
       path: '/qth',
-      name: 'qth',
-      component: qth
+      name: '9',
+      component: qth,
+      meta: maping.qth,
+      index:9
     },
     {
       path: '/hg',
-      name: 'hg',
-      component: hg
+      name: '10',
+      component: hg,
+      meta: maping.hg,
+      index:10
     },
     {
       path: '/hh',
-      name: 'hh',
-      component: hh
+      name: '11',
+      component: hh,
+      meta: maping.hh,
+      index:11
     },
     {
       path: '/sh',
-      name: 'sh',
-      component: sh
+      name: '12',
+      component: sh,
+      meta: maping.sh,
+      index:12
     },
     {
       path: '/dxal',
-      name: 'dxal',
-      component: dxal
+      name: '13',
+      component: dxal,
+      meta: maping.dxal,
+      index:13
     }
-  ]
-})
+  ],
+});
+router.beforeEach(
+  (to, from, next) => {
+  const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+  const nearestWithMeta = to.matched.slice().reverse().find(r => r.meta && r.meta.metaTags);
+  const previousNearestWithMeta = from.matched.slice().reverse().find(r => r.meta && r.meta.metaTags);
+  const areaIndex = to.name
+  const isactive = areaIndex
+  if(nearestWithTitle) {
+    document.title = nearestWithTitle.meta.title;
+  }
+  Array.from(document.querySelectorAll('[data-vue-router-controlled]')).map(el => el.parentNode.removeChild(el));
+  if(!nearestWithMeta) {
+    return next();
+  }
+  nearestWithMeta.meta.metaTags.map(tagDef => {
+    const tag = document.createElement('meta');
+    Object.keys(tagDef).forEach(key => {
+      tag.setAttribute(key, tagDef[key]);
+    });
+    tag.setAttribute('data-vue-router-controlled', '');
+    return tag;
+  }).forEach(tag => document.head.appendChild(tag));
+  next();
+});
+export default router;
+

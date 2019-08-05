@@ -4,6 +4,7 @@
     <sydw-banner></sydw-banner>
     <main-box :citys="citys" ></main-box>
     <back-top></back-top>
+    <footer-box></footer-box>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
   import sydwBanner from './sydwBanner'
   import mainBox from './mainBox'
   import backTop from './backTop'
+  import footerBox from './footer'
   import haerbinBox from './../pages/haerbin'
 
   export default {
@@ -39,7 +41,8 @@
       headerBox,
       mainBox,
       backTop,
-      sydwBanner
+      sydwBanner,
+      footerBox
     }
   }
 </script>

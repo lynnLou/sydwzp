@@ -1,15 +1,15 @@
 <template>
   <header class="header">
     <div class="container">
-      <a href="#" class="logo">
+      <a href="http://hlj.offcn.com/" class="logo">
         <img src="./../assets/logo.png" alt="">
       </a>
       <ul class="links">
-        <li><a href="#">中公首页</a></li>
-        <li><a href="#">面授课程</a></li>
-        <li><a href="#">网校课程</a></li>
-        <li><a href="#">图书商城</a></li>
-        <li><a href="#">联系我们</a></li>
+        <li><a href="http://hlj.offcn.com/" target="_blank">中公首页</a></li>
+        <li><a href="http://hlj.offcn.com/zg/51sydw/" target="_blank">面授课程</a></li>
+        <li><a href="http://hlj.offcn.com/html/2018/04/46582.html" target="_blank">网校课程</a></li>
+        <li><a href="https://shop109916632.taobao.com/category-938681334.htm?spm=a1z10.1-c.0.0.6da656a37F0Bq8&search=y&catName=%CA%C2%D2%B5%B5%A5%CE%BB" rel="nofollow" target="_blank">图书商城</a></li>
+        <li><a href="http://hlj.offcn.com/html/about/contactus/" target="_blank">联系我们</a></li>
       </ul>
       <div class="tel">咨询电话:4006300999</div>
     </div>

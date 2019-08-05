@@ -1,0 +1,38 @@
+.listBox{
+  margin-bottom: 16px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid #0037b6;
+  transition: .5s;
+  &:hover{box-shadow: 0 0 15px rgba(18,69,188,.5); transform: scale(1.03)}
+}
+.detailBox{
+  padding-bottom: 50px;}
+.detailBox a{
+  text-decoration: none;}
+.listTlt{
+  height: 77px;
+  padding: 0 85px 0 24px;
+  background: url(.././assets/listTlt.jpg);}
+.listTlt h3{
+  padding: 8px 0;
+  font-weight: bold;
+  line-height: 30px;
+  span{
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;}
+}
+.listContnet{
+  padding: 15px;
+  p{
+    font-size: 16px;
+    color: #272727;
+    line-height: 40px;}
+}

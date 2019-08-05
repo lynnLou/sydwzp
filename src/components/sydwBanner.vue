@@ -1,5 +1,5 @@
 <template>
-  <div class="banner">
+  <div class="banner" id="banner">
     <div class="container">
       <img src="./../assets/banner01.jpg" alt="">
       <img src="./../assets/banner02.jpg" alt="">
@@ -9,7 +9,7 @@
         <h3>招聘考试信息汇总</h3>
         <span></span>
         <p>2019年黑龙江省事业单位公告内容及详情 <br>含公告发布时间、公告正文、招聘人数、报名时间 <br>以及事业单位报考报名入口</p>
-        <a href="#" class="button">了解更多</a>
+        <a id="more" @click="moveToLesson()" class="button">了解更多</a>
       </div>
 
     </div>
@@ -21,6 +21,27 @@
     data () {
       return {
 
+      }
+    },
+    methods:{
+      moveToLesson (){
+        const currentY = document.documentElement.scrollTop || document.body.scrollTop
+        const moveToY = document.getElementById('banner').clientHeight + document.getElementsByTagName('header')[0].clientHeight
+        this.$options.methods.moveAnimation(currentY,moveToY)
+      },
+      moveAnimation (currentY,moveToY){
+        let needScrollTop = moveToY - currentY
+        let _currentY = currentY
+        setTimeout(() => {
+          const dist = Math.ceil(needScrollTop / 10)
+          _currentY += dist
+          window.scrollTo(_currentY, currentY)
+          if (needScrollTop > 10 || needScrollTop < -10) {
+            this.moveAnimation(_currentY, moveToY)
+          } else {
+            window.scrollTo(_currentY, moveToY)
+          }
+        }, 5)
       }
     }
   }
@@ -71,7 +92,8 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    margin-top: 35px;transition: .5s}
+    margin-top: 35px;transition: .5s;
+    cursor: pointer;}
   .button:hover{
     background-color: #0037b6;
     color: #fff;}

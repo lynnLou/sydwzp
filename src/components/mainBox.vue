@@ -4,14 +4,17 @@
       <div class="container">
         <ul class="cityList">
           <li v-for="( city , index ) in citys">
-            <a-button :data-cityid="city.cityId"  @click="changeCity" :data-num = 'index' class="button" :class="{ active : index == isactive }"><router-link :to="city.citySpell"> {{ city.name }} </router-link></a-button>
+            <a-button :data-cityid="city.cityId"  @click="changeCity" :data-num = 'index' class="button" :class="{ active : index == isactive }"><router-link :to="{path:city.citySpell, query:{index: index}}"> {{ city.name }} </router-link></a-button>
           </li>
         </ul>
       </div>
 
         <div class="container">
           <transition name="fade" mode="out-in" >
-            <router-view></router-view>
+            <keep-alive>
+              <router-view ></router-view>
+            </keep-alive>
+
           </transition>
         </div>
 
@@ -51,10 +54,11 @@
       }
 
     },
-
-    computed :{
-
+    created () {
+      let that = this
+      that.isactive = that.$route.name
     }
+
   }
 </script>
 
